@@ -34,7 +34,7 @@ public class BaseTest {
         Log.info("Starting WebDriver....");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://admin-demo.nopcommerce.com/login");
+        driver.get("https://codemify-demo-app.vercel.app/demo-app");
         Log.info("Launched URL.....");
     }
 
