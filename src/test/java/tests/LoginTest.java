@@ -27,22 +27,21 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "LoginData")
-    public void testValidLogin( String username, String password){
+    public void testValidLogin( String username, String password) throws IOException {
         LoginPage loginpg = new LoginPage(driver);
         /*loginpg.enterUsername("admin@yourstore.com");
         loginpg.enterPassword("admin");
-        loginpg.clickLogin();
-        System.out.println(driver.getTitle());*/
+        loginpg.clickLogin();*/
         Log.info("Starting Login Test");
         test = ExtentReportManager.createTest("Login Test with "+ username);
         test.info("Adding credentials");
         loginpg.login(username, password);
         test.info("Login completed");
-        test.pass("Login Successfully");
+        test.pass("user logged in Successfully");
     }
 
     @Test(enabled = false)
-    public void testInValidLogin(){
+    public void testInValidLogin() throws IOException {
         LoginPage loginpg = new LoginPage(driver);
         /*loginpg.enterUsername("admin@yourstore.com");
         loginpg.enterPassword("admin");

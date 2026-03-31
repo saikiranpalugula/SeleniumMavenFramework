@@ -7,10 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.Log;
+import utils.CommonElementMethods;
+
+import java.io.IOException;
 
 public class LoginPage {
 
     private WebDriver driver;
+    CommonElementMethods commonElementMethods;
 
     private By usernameTxtbox = By.id("Email");
 
@@ -18,21 +22,23 @@ public class LoginPage {
     @FindBy(css="#Password")
     WebElement passwdTxtbox;
 
-    @FindBy(xpath = "//*[text()='Log in']")
+    @FindBy(xpath = "//*[text()='Log i']")
     WebElement loginBtn;
     //private By loginBtn = By.xpath("//*[text()='Log in']");
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
+        commonElementMethods = new CommonElementMethods(this.driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void login(String userName, String passWord){
+    public void login(String userName, String passWord) throws IOException {
         driver.findElement(usernameTxtbox).clear();
         driver.findElement(usernameTxtbox).sendKeys(userName);
 
         passwdTxtbox.clear();
-        passwdTxtbox.sendKeys(passWord);
+        //passwdTxtbox.sendKeys(passWord);
+        this.commonElementMethods.enterValueWhenVisible(passwdTxtbox, passWord);
         /*driver.findElement(passwdTxtbox).clear();
         driver.findElement(passwdTxtbox).sendKeys(passWord);
         driver.findElement(loginBtn).click();*/
